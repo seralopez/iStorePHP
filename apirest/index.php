@@ -31,7 +31,9 @@ $uri = array_filter($res);
 
 // --------------- SIN PETICIONES -----------------------------------
 if (empty($uri)) {
-    mensajeError(404, "No se puede hacer una peticion al host.", "Se debe indicar un recurso en la peticion");
+    // mensajeError(404, "No se puede hacer una peticion al host.", "Se debe indicar un recurso en la peticion");
+    echo include './index.html';
+    exit();
 }
 // --------------- CON PETICIONES -----------------------------------
 // print_r($uri);
@@ -42,6 +44,7 @@ $partes = count($uri);
 
 switch ($metodo) {
     case 'GET':
+        echo ($recurso);
         if ($recurso === "readme") {
             echo include './readme.html';
             exit();

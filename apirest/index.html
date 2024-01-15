@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Data x Formularios</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+    <div class="contenido">
+        <h1>Buscador de Discos</h1>
+        <form action="./abm/productosSelect.php" method="get">
+            <input type="submit" value="Buscar">
+        </form>
+        <div class="lista-discos" id="productos-lista">
+
+
+
+
+
+
+        </div>
+    </div>
+</body>
+<script>
+    // Aquí puedes incluir tu script JavaScript para manejar los datos
+    function mostrarProductos(productos) {
+        var listaProductos = document.getElementById('productos-lista');
+
+        productos.forEach(function (producto) {
+            var li = document.createElement('li');
+            li.innerHTML = '<span class="badge badge-primary">' + producto.codigo + '</span> - ' + producto.nombre + ' - <span class="badge badge-warning" onclick="codic()">Elegir</span>';
+            listaProductos.appendChild(li);
+        });
+    }
+
+    // En este ejemplo, asumimos que 'productosJson' es la variable que contiene el JSON que has pasado desde PHP
+    var productosJson = <? php echo $res_json; ?>;
+    mostrarProductos(productosJson);
+</script>
+
+</html>
