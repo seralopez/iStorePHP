@@ -10,3 +10,6 @@ buscador-discoteka/buscador-form/css/style.css
 buscador-discoteka/buscador-form/js/index.js
 buscador-discoteka/buscador-form/server/discos_filtro.php
 buscador-discoteka/buscador-form/server/variables.php
+
+env.php
+iStore.db

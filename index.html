@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador Data x Formularios</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/index.js" defer></script>
+    <title>iStore</title>
 </head>
 
 <body>
@@ -17,16 +15,10 @@
         </form>
         <div class="lista-discos" id="productos-lista">
 
-
-
-
-
-
         </div>
     </div>
 </body>
 <script>
-    // Aquí puedes incluir tu script JavaScript para manejar los datos
     function mostrarProductos(productos) {
         var listaProductos = document.getElementById('productos-lista');
 
@@ -37,7 +29,6 @@
         });
     }
 
-    // En este ejemplo, asumimos que 'productosJson' es la variable que contiene el JSON que has pasado desde PHP
     var productosJson = <? php echo $res_json; ?>;
     mostrarProductos(productosJson);
 </script>
