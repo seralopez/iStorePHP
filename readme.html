@@ -1,1 +1,718 @@
-<h1> tamaño ajustando el código </h1>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API readme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /*
+      --color-fondo-code: #191919;
+      --color-texto-code: #fff;
+      --color-fondo: #333;
+      --color-texto: #fff;
+      */
+      --color-fondo-code: #f7f7f7;
+      --color-texto-code: #000;
+      --color-fondo: #fff;
+      --color-texto: #333;
+
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 20px;
+      padding-top: 20px;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+    }
+
+    nav {
+      background-color: #f7f7f7;
+      padding: 35px 20px;
+      border-radius: 5px;
+    }
+
+    nav h2 {
+      padding: 0;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      line-height: 30px;
+      color: #333;
+      display: block;
+      transition: color .1s;
+    }
+
+    nav a:hover {
+      color: darkblue;
+    }
+
+    ul ul {
+      list-style-type: circle;
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    h1 {
+      color: var(--color-texto);
+      font-size: 40px;
+      letter-spacing: 3px;
+      padding-bottom: 30px;
+
+    }
+
+    h2 {
+      color: var(--color-texto);
+      font-size: 30px;
+      margin-top: 30px;
+      padding-top: 40px;
+    }
+
+    h3 {
+      color: #777;
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    h4 {
+      color: var(--color-texto);
+      font-size: 16px;
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+
+    pre {
+      background-color: var(--color-fondo-code);
+      color: var(--color-texto-code);
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin-top: 0;
+      max-width: 100%;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    hr {
+      margin: 50px 0;
+      height: 3px;
+      background-color: #777;
+    }
+
+    .mt-0 {
+      margin-top: 0;
+    }
+
+    .mt-5 {
+      margin-top: 50px;
+    }
+
+    .mb-0 {
+      margin-bottom: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+
+    .title {
+      color: #f7f7f7;
+      background-color: #333;
+      border: 5px;
+      font-size: 16px;
+      padding: 8px 12px;
+      letter-spacing: 2px;
+    }
+
+    /*.response-example {
+      background-color: #f7f7f7;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }*/
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- ************************************** -->
+    <!-- intro -->
+    <!-- ************************************** -->
+    <h1>Documentación de la API</h1>
+
+    <nav>
+      <h2>Tabla de contenido</h2>
+      <ul>
+        <li><a href="#introduccion">Introducción</a></li>
+        <li><a href="#descripcion">Descripción</a></li>
+        <li><a href="#autenticacion">Autenticación</a></li>
+        <li><a href="#base-url">Base URL</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#parametros-consulta">Parámetros de consulta</a></li>
+        <li><a href="#codigos-estado">Códigos de estado comunes</a></li>
+        <li><a href="#resumen-recursos">Resumen de Recursos</a></li>
+        <br>
+
+        <li>
+          <a href="#ejemplos-get">Ejemplos de peticiones GET</a>
+          <ul>
+            <li><a href="#ejemplos-get">Obtener todos los resultados de una tabla</a></li>
+            <li><a href="#get-id">Obtener un único resultado por id</a></li>
+            <li><a href="#get-orden">Ordenar resultados</a></li>
+            <li><a href="#get-filtro">Filtrar resultados</a></li>
+            <li><a href="#get-mas">Más ejemplos</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#ejemplos-post">Ejemplos de peticiones POST</a></li>
+        <li><a href="#ejemplos-put">Ejemplos de peticiones PUT</a></li>
+        <li><a href="#ejemplos-delete">Ejemplos de peticiones DELETE</a></li>
+        <li><a href="#conclusion">Conclusiones y Aclaraciones</a></li>
+
+
+      </ul>
+    </nav>
+
+    <h2 id="introduccion">Introducción</h2>
+    <p>La API proporciona como ejemplo acceso a los datos de una tienda en línea, incluyendo información sobre
+      productos,
+      clientes y ventas. Utiliza una base de datos MySQL para almacenar los datos.</p>
+
+    <h2 id="descripcion">Descripción</h2>
+    <p>Esta API RESTful permite a los desarrolladores consultar datos de una base de datos MySQL utilizando endpoints
+      basados en los nombres de las tablas. Lo que significa que pueden realizar solicitudes a cualquier tabla existente
+      en la base de datos.</p>
+
+
+    <h2 id="autenticacion">Autenticación</h2>
+    <p>La API no requiere autenticación en este momento. Sin embargo, se recomienda implementar autenticación en futuras
+      versiones para proteger los datos sensibles.</p>
+    <h2 id="base-url">Base URL</h2>
+    <code>http://apirest.com/</code>
+
+
+    <!-- ************************************** -->
+    <!-- resumenes de contenido de la api-->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="recursos">Recursos</h2>
+
+    <h3>Tablas disponibles</h3>
+    <p>La API admite consultas en las siguientes tablas:</p>
+
+    <ul>
+      <li><code>clientes</code></li>
+      <li><code>productos</code></li>
+      <li><code>ventas</code></li>
+
+      <!-- Agrega aquí más tablas disponibles -->
+    </ul>
+
+    <p>Pero puedes crear todas las tablas que desees. Solo utiliza el nombre de tu nueva tabla en la URI de
+      tu petición.</p>
+
+    <h3>Obtener datos de una tabla</h3>
+    <pre><code>GET /{tableName}</code></pre>
+    <p>Devuelve todos los datos de la tabla especificada por <code>{tableName}</code>.</p>
+    <h3>Ejemplo:</h3>
+    <pre><code>GET http://apirest.com/clientes</code></pre>
+    <p>Devuelve todos los datos de la tabla clientes.</p>
+
+    <h2 id="parametros-consulta">Parámetros de consulta</h2>
+    <p>Las siguientes opciones de parámetros de consulta se pueden utilizar con las solicitudes GET:</p>
+    <ul>
+      <li><code>id</code> (opcional): Valor utilizado para obtener un único recurso.</li>
+      <li><code>sort</code> (opcional): Palabra reservada de la API utilizada para ordenar los resultados.</li>
+      <li><code>filter</code> (opcional): Utilizado para filtrar los resultados.</li>
+    </ul>
+    <p>El uso de estas funcionalidades aparecen detalladas más adelante en esta documentación. </p>
+
+    <h2 id="codigos-estado">Códigos de estado comunes</h2>
+    <ul>
+      <li>200 OK: La solicitud se completó con éxito.</li>
+      <li>201 Created: Se ha creado un nuevo recurso.</li>
+      <li>204 No Content: La solicitud se completó con éxito, pero no hay contenido para devolver.</li>
+      <li>400 Bad Request: la solicitud no es válida o falta algún parámetro requerido.</li>
+      <li>404 Not Found: el recurso solicitado no existe.</li>
+      <li>500 Internal Server Error: se produjo un error interno del servidor.</li>
+    </ul>
+
+    <h2 id="resumen-recursos">Resumen de Recursos</h2>
+    <ul>
+      <li><code><b>GET</b> /productos</code><small><br>Devuelve una lista de todos los productos disponibles en la
+          tienda.</small></li>
+      <li><code><b>GET</b> /productos/27</code><small><br>Devuelve el producto con ID 27.</small></li>
+      <li><code><b>GET</b> /productos/sort=nombre</code><small><br>Devuelve una lista de todos los productos disponibles
+          en la tienda ordenados por el nombre de manera ascendente. Aplica para números.</small></li>
+      <li><code><b>GET</b> /productos/filter=descripcion=notebook</code><small><br>Devuelve una lista de todos los
+          productos que contengan la palabra <i>notebook</i> en su descripción.</small></li>
+      <li><code><b>POST</b> /productos/</code><small><br>Crea un nuevo producto en la base de datos.</small></li>
+      <li><code><b>PUT</b> /productos/2</code><small><br>Actualiza la información enviada del producto con ID 2.</small>
+      </li>
+      <li><code><b>DELETE</b> /productos/10</code><small><br>Elimina el producto con ID 10.</small></li>
+    </ul>
+
+
+
+
+    <!-- ************************************** -->
+    <!-- ejemplos de uso  GET-->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="ejemplos-get">Ejemplos de peticiones GET</h2>
+    <h3>Productos</h3>
+
+    <!-- ejemplo 1 -->
+    <p class="title">Obtener todos los productos</p>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /productos</code></pre>
+    <p>Devuelve una lista de todos los productos disponibles en la tienda.</p>
+    <h4>Parámetros de la ruta</h4>
+    <ul>
+      <li><code>ninguno</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+    [
+      {
+        "id": 1,
+        "nombre": "iPhone 12",
+        "descripcion": "Smartphone Apple iPhone 12 con pantalla OLED de 6.1 pulgadas, procesador A14 Bionic, cámara dual de ...",
+        "precio": 1099.99,
+        "stock": 50,
+        "imagen": "iphone12.jpg",
+        "promo": false,
+        "fecha_creacion": "2023-01-01",
+        "fecha_modificacion": "2023-06-05"
+      },
+
+      {
+        "id": 2,
+        "nombre": "Samsung Galaxy S21",
+        "descripcion": "Smartphone Samsung Galaxy S21 con pantalla Dynamic AMOLED de 6.2 pulgadas, procesador Exynos 2100 ...",
+        "precio": 999.99,
+        "stock": 75,
+        "imagen": "galaxys21.jpg",
+        "promo": true,
+        "fecha_creacion": "2023-01-01",
+        "fecha_modificacion": "2023-06-04"
+      },
+      // ...
+
+    ]
+    </code>
+  </pre>
+
+    <!-- ejemplo 2 -->
+    <p id="get-id" class="mt-5 title">Obtener un producto por id</p>
+    <pre><code>GET /productos/{id}</code></pre>
+    <p>Devuelve la información detallada de un producto específico.</p>
+    <h4>Parámetros de ruta</h4>
+    <ul>
+      <li><code>id del producto a obtener.</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /productos/2</code></pre>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+
+      {
+        "id": 2,
+        "nombre": "Samsung Galaxy S21",
+        "descripcion": "...",
+        "precio": 999.99,
+        "stock": 75,
+        "imagen": "galaxys21.jpg",
+        "promo": true,
+        "fecha_creacion": "2023-01-01",
+        "fecha_modificacion": "2023-06-04"
+      }
+
+    </code>
+  </pre>
+
+    <!-- ejemplo 3 -->
+    <p id="get-orden" class="mt-5 title">Obtener productos ordenados</p>
+    <pre><code>GET /productos/{sort = campo_a_ordenar}</code></pre>
+    <p>Devuelve una lista de todos los productos disponibles en la tienda, ordenados según el campo
+      especificado.<br>Este
+      orden se aplica de menor a mayor, cuando el campo a ordenar es number y de A-Z para los campos del tipo string</p>
+    <h4>Parámetros de ruta</h4>
+    <ul>
+      <li><code>nombre del campo a ordenar.</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /productos/sort=nombre</code></pre>
+    <small>Ordenados por nombre</small>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+    [
+
+      {
+        "id": 5,
+        "nombre": "'Consola Sony Playstation 5",
+        "descripcion": "CPU AMD Zen 2 de 8 núcleos 
+        ...
+      },
+
+      {
+        "id": 1,
+        "nombre": "iPhone 12",
+        "descripcion": "Smartphone Apple iPhone 12 con pantalla 
+        ...
+      },
+
+      {
+        "id": 2,
+        "nombre": "Samsung Galaxy S21",
+        "descripcion": "Smartphone Samsung Galaxy S21 con 
+        ...
+      },
+      // ...
+
+    ]
+    </code>
+  </pre>
+
+    <h4 class="mb-0 mt-5">Ejemplo de petición</h4>
+    <pre><code>GET /productos/sort=stock</code></pre>
+    <p class="mb-0"><small>Ordenados por stock</small></p>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+    [
+
+      {
+        "id": 5,
+        "nombre": "'Consola Sony Playstation 5",
+        "stock": 18, 
+        ...
+      },
+
+      {
+        "id": 1,
+        "nombre": "iPhone 12",
+        "stock": 25, 
+        ...
+      },
+
+      {
+        "id": 2,
+        "nombre": "Samsung Galaxy S21",
+        "stock": 32,  
+        ...
+      },
+      // ...
+
+    ]
+    </code>
+  </pre>
+
+    <!-- ejemplo 4 -->
+    <p id="get-filtro" class="mt-5 title">Peticiones con filtro</p>
+    <pre><code>GET /productos/{filter}</code></pre>
+    <pre><code>GET /productos/{campo_filtro = valor_filtro}</code></pre>
+    <p>Devuelve una lista de todos los productos disponibles en la tienda, que cumplan la igualdad especificada.</p>
+    <h4>Parámetros de ruta</h4>
+    <ul>
+      <li><code>nombre del campo a filtrar.</code></li>
+      <li><code>valor del filtro.</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /productos/descripcion=Laptop</code></pre>
+    <p>Devuelve una lista de todos los productos que contengan la palabra <em>Laptop</em> en su descripción.<br></p>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+    [
+      {
+        "id": 3,
+        "nombre": "MacBook Air M1",
+        "descripcion": "Laptop Apple MacBook Air M1 con procesador M1"
+        ...
+      },
+
+      {
+        "id": 4,
+        "nombre": "Microsoft Surface Laptop 4",
+        "descripcion": "Laptop Microsoft Surface Laptop 4 con procesador Intel Core i5"
+        ...
+      },
+
+      {
+        "id": 17,
+        "nombre": "Dell XPS 13",
+        "descripcion": "Laptop Dell XPS 13 con pantalla InfinityEdge de 13.4 pulgadas"
+        ...
+      },
+      // ...
+
+    ]
+    </code>
+  </pre>
+
+    <h3 id="get-mas" class="mt-5">Clientes</h3>
+
+    <!-- ejemplo 5 -->
+    <p class="title">Obtener todos los clientes</p>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /clientes</code></pre>
+    <p>Devuelve una lista de todos los clientes disponibles en la tienda.</p>
+    <h4>Parámetros de la ruta</h4>
+    <ul>
+      <li><code>ninguno</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+    <code>
+  
+    [
+      {
+        "id": 1,
+        "nombre": "Lucas",
+        "apellido": "González",
+        "correo": "lucas.gonzalez@gmail.com",
+        "telefono": "+54 11 2345-6789",
+        "direccion": "Av. Corrientes 123",
+        "localidad": "Buenos Aires",
+        "codigo_postal": "1043",
+        "pais": "Argentina",
+        "fecha_creacion": "2022-01-01",
+        "fecha_modificacion": "2022-01-02"
+      },
+      {
+        "id": 2,
+        "nombre": "Maria",
+        "apellido": "Lopez",
+        "correo": "maria.lopez@gmail.com",
+        "telefono": "+54 11 9876-5432",
+        "direccion": "Calle 123",
+        "localidad": "Buenos Aires",
+        "codigo_postal": "1000",
+        "pais": "Argentina",
+        "fecha_creacion": "2023-06-05",
+        "fecha_modificacion": "2023-06-05"
+      },
+      // ...
+  ]
+    </code>
+    </pre>
+
+    <h3 class="mt-5">Ventas</h3>
+
+    <!-- ejemplo 6 -->
+    <p class="title">Obtener todas las ventas</p>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>GET /ventas</code></pre>
+    <p>Devuelve una lista de todas las ventas realizadas en la tienda.</p>
+    <h4>Parámetros de la ruta</h4>
+    <ul>
+      <li><code>ninguno</code></li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de respuesta </h4>
+    <pre>
+      <code>
+
+[
+
+  // ...
+]
+      </code>
+    </pre>
+
+    <!-- ************************************** -->
+    <!-- ejemplos de uso  POST-->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="ejemplos-post">Ejemplos de peticiones POST</h2>
+
+    <!-- ejemplo 7 -->
+    <p class="title">Crear cliente</p>
+    <h4>Parámetros de petición</h4>
+    <ul>
+      <li><code>ninguno</code></li>
+    </ul>
+    <h4>Datos enviados en el body de la petición</h4>
+    <ul>
+      <li><code>nombre</code>: (obligatorio) Nombre del cliente.</li>
+      <li><code>apellido</code>: (obligatorio) Apellido del cliente.</li>
+      <li><code>correo</code>: (obligatorio) Correo electrónico del cliente.</li>
+      <li><code>telefono</code>: (opcional) Número de teléfono del cliente.</li>
+      <li><code>direccion</code>: (opcional) Dirección del cliente.</li>
+      <li><code>localidad</code>: (opcional) Localidad del cliente.</li>
+      <li><code>codigo_postal</code>: (opcional) Código postal del cliente.</li>
+      <li><code>pais</code>: (opcional) País del cliente.</li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>POST /clientes</code></pre>
+    <p>Crea un nuevo cliente en la base de datos.</p>
+    <h4 class="mb-0">Ejemplo del body de la petición</h4>
+    <pre>
+      <code>
+
+        {
+          "nombre": "Maria",
+          "apellido": "Lopez",
+          "correo": "maria.lopez@gmail.com",
+          "telefono": "+54 11 9876-5432",
+          "direccion": "Calle 123",
+          "localidad": "Buenos Aires",
+          "codigo_postal": "1000",
+          "pais": "Argentina"
+        }
+      </code>
+    </pre>
+    <h4 class="mb-0">Ejemplo de respuesta</h4>
+    <pre>
+      <code>
+
+        {
+          "id": 2,
+          "nombre": "Maria",
+          "apellido": "Lopez",
+          "correo": "maria.lopez@gmail.com",
+          "telefono": "+54 11 9876-5432",
+          "direccion": "Calle 123",
+          "localidad": "Buenos Aires",
+          "codigo_postal": "1000",
+          "pais": "Argentina",
+          "fecha_creacion": "2023-06-05",
+          "fecha_modificacion": "2023-06-05"
+        }
+      </code>
+    </pre>
+
+    <!-- ************************************** -->
+    <!-- ejemplos de uso  PUT-->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="ejemplos-put">Ejemplos de peticiones PUT</h2>
+
+    <!-- ejemplo 7 -->
+    <p class="title">Actualizar o modificar un cliente</p>
+    <h4>Parámetros de petición</h4>
+    <ul>
+      <li><code>id del cliente a modificar.</code></li>
+    </ul>
+    <h4>Datos del objeto json enviado en el body de la petición</h4>
+    <ul>
+      <li><code>nombre</code>: (obligatorio) Nombre del cliente.</li>
+      <li><code>apellido</code>: (obligatorio) Apellido del cliente.</li>
+      <li><code>correo</code>: (obligatorio) Correo electrónico del cliente.</li>
+      <li><code>telefono</code>: (opcional) Número de teléfono del cliente.</li>
+      <li><code>direccion</code>: (opcional) Dirección del cliente.</li>
+      <li><code>localidad</code>: (opcional) Localidad del cliente.</li>
+      <li><code>codigo_postal</code>: (opcional) Código postal del cliente.</li>
+      <li><code>pais</code>: (opcional) País del cliente.</li>
+    </ul>
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>PUT /clientes/{id}</code></pre>
+    <p>Modifica los datos de un cliente en la base de datos.</p>
+    <h4 class="mb-0">Ejemplo del body de la petición</h4>
+    <pre>
+      <code>
+
+        {
+          "nombre": "Maria",
+          "apellido": "Lopez",
+          "correo": "maria.lopez@gmail.com",
+          "telefono": "+54 11 9876-5432",
+          "direccion": "Calle 566",
+          "localidad": "Buenos Aires",
+          "codigo_postal": "1000",
+          "pais": "Argentina"
+        }
+      </code>
+    </pre>
+    <h4 class="mb-0">Ejemplo de respuesta</h4>
+    <pre>
+      <code>
+
+        {
+          "id": 2,
+          "nombre": "Maria",
+          "apellido": "Lopez",
+          "correo": "maria.lopez@gmail.com",
+          "telefono": "+54 11 9876-5432",
+          "direccion": "Calle 566",
+          "localidad": "Buenos Aires",
+          "codigo_postal": "1000",
+          "pais": "Argentina",
+          "fecha_creacion": "2023-06-05",
+          "fecha_modificacion": "2023-06-05"
+        }
+      </code>
+    </pre>
+
+
+    <!-- ************************************** -->
+    <!-- ejemplos de uso  DELETE-->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="ejemplos-delete">Ejemplos de peticiones DELETE</h2>
+
+    <!-- ejemplo 7 -->
+    <p class="title">Eliminar un cliente</p>
+    <h4>Parámetros de petición</h4>
+    <ul>
+      <li><code>id del cliente a eliminar.</code></li>
+    </ul>
+
+    <h4 class="mb-0">Ejemplo de petición</h4>
+    <pre><code>DELETE /clientes/{id}</code></pre>
+    <p>Elimina al cliente con el id especificado de la base de datos.</p>
+    <h4 class="mb-0">Ejemplo de respuesta</h4>
+    <pre>
+      <code>
+
+        {
+          "id": 2
+        }
+      </code>
+    </pre>
+    <!-- ************************************** -->
+    <!-- conclusiones y aclaraciones -->
+    <!-- ************************************** -->
+    <hr>
+    <h2 id="conclusion">Conclusiones</h2>
+    <p>Esta documentación proporciona una descripción general de la API RESTful que permite consultar datos de una base
+      de
+      datos MySQL. Los desarrolladores pueden utilizar esta información para interactuar con la API y realizar consultas
+      en las diferentes tablas disponibles.</p>
+  </div>
+</body>
+
+</html>
