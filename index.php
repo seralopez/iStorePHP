@@ -1,4 +1,6 @@
-<?php
+<?php 
+     include '/funciones/funciones.php';
+     include '/funciones/conexion.php';
 
 // --------------- FUNCIONES ----------------------------------------
 function mensajeError($codigo, $mensaje, $solucion)
@@ -25,7 +27,8 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 $metodo = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-$res = str_replace("/DW6/apirest", "", $uri);
+#$res = str_replace("/DW6/apirest", "", $uri);
+$res = str_replace("/FS/iStore", "", $uri);
 $res = explode("/", $res);
 $uri = array_filter($res);
 
@@ -41,14 +44,16 @@ if (empty($uri)) {
 
 $recurso = $uri[1];
 $partes = count($uri);
-
 switch ($metodo) {
     case 'GET':
         echo ($recurso);
         if ($recurso === "readme") {
             echo include './readme.html';
             exit();
-        };
+        }else{
+            echo include './index.html';
+            exit();
+        }
         break;
     case 'POST':
         if ($partes > 1) {
