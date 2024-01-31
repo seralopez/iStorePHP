@@ -1,49 +1,45 @@
 <?php 
-     include '/opt/lampp/htdocs/FS/iStore/funciones/funciones.php';
-     include '/opt/lampp/htdocs/FS/iStore/funciones/conexion.php';
+     include './funciones/funciones.php';
+     include './templates/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
+<div>
+     <h1>iStore</h1>
+     <input type="text" id="buscar" placeholder="Buscar producto...">
+     <p class="total-productos"><span></span> productos</p>
+     <div class="contenedor-tabla">
+          <table id="listado-productos" class="listado-productos">
+               <thead>
+                    <tr>
+                         <th>Nombre</th>
+                         <th>Empresa</th>
+                         <th>Teléfono</th>
+                    </tr>
+               </thead>
 
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-          integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-          crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-          integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-          crossorigin="anonymous"></script>
-     <title>iStore</title>
-</head>
-
-<body>
-     <div class="contenido">
-          <h1>Buscador de Discos</h1>
-          <form action="FS/iStore/abm/productos.php" method="get">
-               <input type="submit" value="Buscar">
-          </form>
-          <?php $contactos = obtenerContactos(); 
+               <tbody>
+                    <?php $contactos = obtenerContactos(); 
                if($contactos->num_rows) {
                     foreach($contactos as $contacto) { ?>
-               <tr>
-                    <td>
-                         <?php echo $contacto['nombre']; ?>
-                    </td>
-                    <td>
-                         <?php echo $contacto['precio']; ?>
-                    </td>
-                    <td>
-                         <?php echo $contacto['stock']; ?>
-                    </td>
-                    <td>
+                    <tr>
+                         <td>
+                              <?php echo $contacto['nombre']; ?>
+                         </td>
+                         <td>
+                              <?php echo $contacto['precio']; ?>
+                         </td>
+                         <td>
+                              <?php echo $contacto['stock']; ?>
+                         </td>
+                         <td>
 
-                    </td>
-               </tr>
-               <?php }
+                         </td>
+                    </tr>
+                    <?php }
                } ?>
+               </tbody>
+          </table>
      </div>
-</body>
+</div>
 
-</html>
+<?php include './templates/footer.php'; ?>
