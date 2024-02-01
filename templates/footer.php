@@ -1,3 +1,4 @@
-    </body>
-    <script src="./js/script.js"></script>
+</body>
+
+<script src="./js/script.js"></script>
 </html>

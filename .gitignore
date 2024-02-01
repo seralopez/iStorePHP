@@ -1,15 +1,2 @@
-buscador-discoteka/buscador-ajax/index.html
-buscador-discoteka/buscador-ajax/css/style.css
-buscador-discoteka/buscador-ajax/js/index.js
-buscador-discoteka/buscador-ajax/server/discos_filtro.php
-buscador-discoteka/buscador-ajax/server/variables.php
-buscador-discoteka/buscador-form/2-read-data.php
-buscador-discoteka/buscador-form/index.html
-buscador-discoteka/buscador-form/intro.php
-buscador-discoteka/buscador-form/css/style.css
-buscador-discoteka/buscador-form/js/index.js
-buscador-discoteka/buscador-form/server/discos_filtro.php
-buscador-discoteka/buscador-form/server/variables.php
-
-env.php
-iStore.db
+.htaccess
+./funciones/conexion.php

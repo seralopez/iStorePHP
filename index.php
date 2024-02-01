@@ -50,7 +50,10 @@ switch ($metodo) {
         if ($recurso === "readme") {
             echo include './readme.html';
             exit();
-        }else{
+        } elseif ($recurso === "resultados") {
+            echo include './templates/resultados.php';
+            exit();
+        } else {
             echo include './index.html';
             exit();
         }

@@ -3,43 +3,34 @@
      include './templates/header.php';
 ?>
 
-<div>
-     <h1>iStore</h1>
-     <input type="text" id="buscar" placeholder="Buscar producto...">
-     <p class="total-productos"><span></span> productos</p>
-     <div class="contenedor-tabla">
-          <table id="listado-productos" class="listado-productos">
-               <thead>
-                    <tr>
-                         <th>Nombre</th>
-                         <th>Empresa</th>
-                         <th>Teléfono</th>
-                    </tr>
-               </thead>
+<div class="container py-3">
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">iStore</h1>
+    <p class="fs-5 text-body-secondary">Compra rapido y facil.</p>
+    <h2 class="fw-bold text-body-emphasis">
+      <p>
+        <?php echo mysqli_num_rows(buscarMarcas()); ?> marcas para que puedas comprar!
+      </p>
+    </h2>
+  </div>
 
-               <tbody>
-                    <?php $contactos = obtenerContactos(); 
-               if($contactos->num_rows) {
-                    foreach($contactos as $contacto) { ?>
-                    <tr>
-                         <td>
-                              <?php echo $contacto['nombre']; ?>
-                         </td>
-                         <td>
-                              <?php echo $contacto['precio']; ?>
-                         </td>
-                         <td>
-                              <?php echo $contacto['stock']; ?>
-                         </td>
-                         <td>
-
-                         </td>
-                    </tr>
-                    <?php }
-               } ?>
-               </tbody>
-          </table>
-     </div>
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <?php $contactos = buscarMarcas(); 
+          if($contactos->num_rows) {
+            foreach($contactos as $contacto) { ?>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm hover-card">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">
+            <a href="resultados.php?marca=<?php echo urlencode($contacto['marca']); ?>" class="card-link no-underline">
+              <?php echo $contacto['marca']; ?>
+            </a>
+          </h4>
+        </div>
+      </div>
+    </div>
+    <?php } } ?>
+  </div>
 </div>
 
 <?php include './templates/footer.php'; ?>
