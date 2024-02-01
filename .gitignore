@@ -1,2 +1,2 @@
 .htaccess
-./funciones/conexion.php
+funciones/conexion.php
