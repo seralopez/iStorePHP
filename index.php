@@ -46,12 +46,11 @@ $recurso = $uri[1];
 $partes = count($uri);
 switch ($metodo) {
     case 'GET':
-        echo ($recurso);
         if ($recurso === "readme") {
             echo include './readme.html';
             exit();
-        } elseif ($recurso === "resultados") {
-            echo include './templates/resultados.php';
+        } elseif ($recurso === "productos") {
+            echo include './templates/productos.html';
             exit();
         } else {
             echo include './index.html';

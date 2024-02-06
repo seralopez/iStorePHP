@@ -1,11 +1,9 @@
-const inputBuscador = document.querySelector('#buscar');
+// const inputBuscador = document.querySelector('#buscar');
 
 eventListeners();
 
 function eventListeners() {
-
-     inputBuscador.addEventListener('input', buscarContactos);
-     
+     // inputBuscador.addEventListener('input', buscarContactos);
      numeroContactos();
 }
 
@@ -24,7 +22,7 @@ function buscarContactos(e) {
          const texto = `${nombre} ${precio} ${stock} ${descripcion}`;
  
          if (texto.search(expresion) != -1) {
-             columna.style.display = 'block'; // o cualquier estilo que desees
+             columna.style.display = 'block';
          }
          numeroContactos();
      });
@@ -43,6 +41,5 @@ function numeroContactos() {
           }
      });
 
-     // console.log(total);
      contenedorNumero.textContent = total;
 }
